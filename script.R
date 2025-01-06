@@ -3,7 +3,7 @@ library(tidyr)
 library(AnnotationHub)
 
 ##########################01-extract gtf ENSEMBL and SYMBOL #58302###################
-ID1 <- read.table("/Users/huobei/Documents/leo/RNAseq_review/analysis_v4/seq/id.txt", header = FALSE, sep = "\t", quote = "", fill = TRUE)
+ID1 <- read.table("id.txt", header = FALSE, sep = "\t", quote = "", fill = TRUE)
 ID1 <- ID1[!duplicated(ID1$V1), c(1, 4)]
 colnames(ID1) <- c("gene_name", "gene_symbol")
 ID1[] <- lapply(ID1, function(x) sub(".*: ", "", x))
@@ -32,11 +32,11 @@ ID3<- ID3[!is.na(ID3$gene_id),]
 
 ##https://www.syngoportal.org/convert和https://www.genecards.org/
 
-ID4<-readxl::read_xlsx("/Users/huobei/Desktop/success/ID_270.xlsx")
+ID4<-readxl::read_xlsx("ID_ENTREZID.xlsx")
 ID4<-rbind(ID3,ID4)
-ID5<-readxl::read_xlsx("/Users/huobei/Desktop/success/ID_33038.xlsx")
+ID5<-readxl::read_xlsx("ID_no_ENTREZID.xlsx")
 ID<-rbind(ID4,ID5)           
-writexl::write_xlsx(ID,"/Users/huobei/Desktop/success/ID.xlsx")
+writexl::write_xlsx(ID,"ID.xlsx")
 
 
 
